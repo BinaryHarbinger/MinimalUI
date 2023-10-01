@@ -4,18 +4,18 @@
 
 using namespace std ;
 
-string username = "unknown" ;
-int clockMode = 0 ;
-int user = 0 ;
-bool Logged = false ;
-bool DevMode = false ;
-int CurrentInterface = 0 ;
-bool opSelected = false ;
-bool OptionsDisabled = true ;
+string username = "unknown" ; //Some variable values like username
+int clockMode = 0 ; //I will delete thaaat
+int user = 0 ; // I forgot about it
+bool Logged = false ; // It' s for checking you are logged or not
+bool DevMode = false ; // There is nothing for you just do NOT press E + F when you are on Logg Screen
+int CurrentInterface = 0 ; // That variable for parameters function function use that variable for which mode you are on like User Settings, Main Interface etc. 
+bool opSelected = false ; // It says if you selected a option with your keys (1,2,3,4,5 or esc) then while loop will stop for a 'while'
+bool OptionsDisabled = true ; // It will disable helping senteces like choose app or option
 
 
 
-#ifdef _WIN32
+#ifdef _WIN32 //that part detects which Operating System are you using
 const std::string OS_NAME = "Windows" ;
 #elif __linux__
 const std::string OS_NAME = "Linux" ;
@@ -23,7 +23,7 @@ const std::string OS_NAME = "Linux" ;
 const std::string OS_NAME = "Other" ;
 #endif
 
-void clear ()
+void clear () // It clears the terminal (Definetly I wrote it)
 {
 #ifdef _WIN32
     system("cls");
@@ -32,13 +32,13 @@ void clear ()
 #endif
 }
 
-int ChangeUser (int& user)
+int ChangeUser (int& user) // This will be inactive for a while
 {
     user = user + 1 ;
     return user ;
 }
 
-bool LogScreen (bool& Logged)
+bool LogScreen (bool& Logged) //Logg screeen itself
 {
     cout << endl << yellow << "Welcome to MinimalUI" << endl << endl
     << green << "Press Space to Login as " << blue << username << white <<  endl ;
@@ -74,7 +74,7 @@ bool LogScreen (bool& Logged)
     return DevMode ;
 }
 
-void parameters(int& CurrentInterface)
+void parameters(int& CurrentInterface) //Parameters for every Screen (Except Logg Screen)
 {
     clear ();
     cout << endl << yellow << "Minimal UI Version: " << red << "Alpha 1.1 " << white << "/ Current OS is " ;
@@ -135,7 +135,7 @@ void parameters(int& CurrentInterface)
     }
 }
 
-int clockFunction (int clockMode) 
+int clockFunction (int clockMode) //a clock function for Log Screen and App (I will delete Logg Screen Part)
 {
     OptionsDisabled = true ;
     while (GetAsyncKeyState(VK_ESCAPE) == false && 0x8000) 
@@ -158,7 +158,7 @@ int clockFunction (int clockMode)
             cout << "Hold Escape to Return Applications Menu" ;
             jump (1) ;
             cout << hour << "." << minute << "." << second << std::endl;
-            Sleep (1000) ;
+            Sleep (1000) ; // Update's it in every seconds
             clear () ;
         }
         
@@ -166,7 +166,7 @@ int clockFunction (int clockMode)
     OptionsDisabled = false ;
     return OptionsDisabled ;
 }
-int options()
+int options() //Main Code that detects your inputs (btw there is a delay for your cpu's health)
 {
     while (opSelected != true)
     {
